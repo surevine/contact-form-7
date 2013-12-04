@@ -72,5 +72,3 @@ if ( ! defined( 'WPCF7_VERIFY_NONCE' ) )
 	define( 'WPCF7_VERIFY_NONCE', true );
 
 require_once WPCF7_PLUGIN_DIR . '/settings.php';
-
-?>
