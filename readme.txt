@@ -30,6 +30,11 @@ The following are other recommended plugins by the author of Contact Form 7.
 * [Really Simple CAPTCHA](http://wordpress.org/extend/plugins/really-simple-captcha/) - Really Simple CAPTCHA is a simple CAPTCHA module which works well with Contact Form 7.
 * [Bogo](http://wordpress.org/extend/plugins/bogo/) - Bogo is a straight-forward multilingual plugin that doesn't cause headaches.
 
+= Contributions =
+
+Lloyd Watkin <lloyd.watkin@surevine.com>
+    - Honeypot field type
+
 = Translators =
 
 * Afrikaans (af) - [Schalk Burger](http://www.schalkburger.za.net/)
