@@ -208,6 +208,9 @@ function wpcf7_add_tag_generator_text() {
 
 	wpcf7_add_tag_generator( 'tel', __( 'Telephone number', 'wpcf7' ),
 		'wpcf7-tg-pane-tel', 'wpcf7_tg_pane_tel' );
+    
+    wpcf7_add_tag_generator( 'honeypot', __( 'Honeypot', 'wpcf7' ),
+        'wpcf7-tg-pane-honeypot', 'wpcf7_tg_pane_honeypot' );
 }
 
 function wpcf7_tg_pane_text( &$contact_form ) {
