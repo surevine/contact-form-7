@@ -1,10 +1,12 @@
 <?php
 /**
 ** A base module for the following types of tags:
-** 	[text] and [text*]		# Single-line text
-** 	[email] and [email*]	# Email address
-** 	[url] and [url*]		# URL
-** 	[tel] and [tel*]		# Telephone number
+** 	[text] and [text*]		   # Single-line text
+** 	[email] and [email*]	   # Email address
+** 	[url] and [url*]	       # URL
+** 	[tel] and [tel*]		   # Telephone number
+**  [honeypot] and [honeypot*] # Honeypot field
+
 **/
 
 /* Shortcode handler */
@@ -13,7 +15,8 @@ add_action( 'wpcf7_init', 'wpcf7_add_shortcode_text' );
 
 function wpcf7_add_shortcode_text() {
 	wpcf7_add_shortcode(
-		array( 'text', 'text*', 'email', 'email*', 'url', 'url*', 'tel', 'tel*' ),
+		array( 'text', 'text*', 'email', 'email*', 'url', 
+            'url*', 'tel', 'tel*', 'honeypot', 'honeypot*', ),
 		'wpcf7_text_shortcode_handler', true );
 }
 
@@ -151,6 +154,13 @@ function wpcf7_text_validation_filter( $result, $tag ) {
 			$result['reason'][$name] = wpcf7_get_message( 'invalid_tel' );
 		}
 	}
+    
+    if ( 'honeypot' == $tag->basetype ) {
+        if ( '' !== $value ) {
+            if ( $contact_form = wpcf7_get_current_contact_form() )
+		        $contact_form->honeypot = array( 'spam' => true );
+        }
+    }
 
 	return $result;
 }
@@ -214,6 +224,10 @@ function wpcf7_tg_pane_url( &$contact_form ) {
 
 function wpcf7_tg_pane_tel( &$contact_form ) {
 	wpcf7_tg_pane_text_and_relatives( 'tel' );
+}
+        
+function wpcf7_tg_pane_honeypot( &$contact_form ) {
+    wpcf7_tg_pane_text_and_relatives( 'honeypot' );
 }
 
 function wpcf7_tg_pane_text_and_relatives( $type = 'text' ) {
