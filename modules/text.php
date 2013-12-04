@@ -241,7 +241,11 @@ function wpcf7_tg_pane_text_and_relatives( $type = 'text' ) {
 <div id="wpcf7-tg-pane-<?php echo $type; ?>" class="hidden">
 <form action="">
 <table>
-<tr><td><input type="checkbox" name="required" />&nbsp;<?php echo esc_html( __( 'Required field?', 'wpcf7' ) ); ?></td></tr>
+<?php if ('honeypot' !== $type) : ?><tr>
+    <td>
+        <input type="checkbox" name="required" />&nbsp;<?php echo esc_html( __( 'Required field?', 'wpcf7' ) ); ?>
+    </td>
+</tr><?php endif ?>
 <tr><td><?php echo esc_html( __( 'Name', 'wpcf7' ) ); ?><br /><input type="text" name="name" class="tg-name oneline" /></td><td></td></tr>
 </table>
 
@@ -286,11 +290,9 @@ function wpcf7_tg_pane_text_and_relatives( $type = 'text' ) {
 </table>
 
 <div class="tg-tag"><?php echo esc_html( __( "Copy this code and paste it into the form left.", 'wpcf7' ) ); ?><br /><input type="text" name="<?php echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" /></div>
-
+<?php if ('honeypot' !== $type) : ?>
 <div class="tg-mail-tag"><?php echo esc_html( __( "And, put this code into the Mail fields below.", 'wpcf7' ) ); ?><br /><span class="arrow">&#11015;</span>&nbsp;<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" /></div>
+<?php endif ?>
 </form>
 </div>
-<?php
-}
-
-?>
+<?php }
