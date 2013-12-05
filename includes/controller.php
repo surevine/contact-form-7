@@ -64,15 +64,24 @@ function wpcf7_ajax_json_echo() {
 
 			if ( ! $result['valid'] ) {
 				$invalids = array();
-
+                $isHoneypotFail = false;
 				foreach ( $result['invalid_reasons'] as $name => $reason ) {
-					$invalids[] = array(
-						'into' => 'span.wpcf7-form-control-wrap.' . $name,
-						'message' => $reason );
+                    if ('honeypot' === $reason) {
+                        $isHoneypotFail = true;
+                    } else {
+                        $invalids[] = array(
+                            'into' => 'span.wpcf7-form-control-wrap.' . $name,
+                            'message' => $reason );
+                    }
 				}
 
 				$items['invalids'] = $invalids;
 			}
+            
+            if ((0 === count($items['invalids'])) &&
+                (true === $isHoneypotFail)) {
+                $result['spam'] = true;
+            }
 
 			if ( $result['spam'] )
 				$items['spam'] = true;
