@@ -108,6 +108,8 @@ add_filter( 'wpcf7_validate_url', 'wpcf7_text_validation_filter', 10, 2 );
 add_filter( 'wpcf7_validate_url*', 'wpcf7_text_validation_filter', 10, 2 );
 add_filter( 'wpcf7_validate_tel', 'wpcf7_text_validation_filter', 10, 2 );
 add_filter( 'wpcf7_validate_tel*', 'wpcf7_text_validation_filter', 10, 2 );
+add_filter( 'wpcf7_validate_honeypot', 'wpcf7_text_validation_filter', 10, 2 );
+add_filter( 'wpcf7_validate_honeypot*', 'wpcf7_text_validation_filter', 10, 2 );
 
 function wpcf7_text_validation_filter( $result, $tag ) {
 	$tag = new WPCF7_Shortcode( $tag );
@@ -209,8 +211,8 @@ function wpcf7_add_tag_generator_text() {
 	wpcf7_add_tag_generator( 'tel', __( 'Telephone number', 'wpcf7' ),
 		'wpcf7-tg-pane-tel', 'wpcf7_tg_pane_tel' );
     
-    wpcf7_add_tag_generator( 'honeypot', __( 'Honeypot', 'wpcf7' ),
-        'wpcf7-tg-pane-honeypot', 'wpcf7_tg_pane_honeypot' );
+        wpcf7_add_tag_generator( 'honeypot', __( 'Honeypot', 'wpcf7' ),
+                'wpcf7-tg-pane-honeypot', 'wpcf7_tg_pane_honeypot' );
 }
 
 function wpcf7_tg_pane_text( &$contact_form ) {
@@ -230,11 +232,12 @@ function wpcf7_tg_pane_tel( &$contact_form ) {
 }
         
 function wpcf7_tg_pane_honeypot( &$contact_form ) {
+echo 'honeypot function called';
     wpcf7_tg_pane_text_and_relatives( 'honeypot' );
 }
 
 function wpcf7_tg_pane_text_and_relatives( $type = 'text' ) {
-	if ( ! in_array( $type, array( 'email', 'url', 'tel' ) ) )
+	if ( ! in_array( $type, array( 'email', 'url', 'tel', 'honeypot' ) ) )
 		$type = 'text';
 
 ?>
@@ -246,7 +249,12 @@ function wpcf7_tg_pane_text_and_relatives( $type = 'text' ) {
         <input type="checkbox" name="required" />&nbsp;<?php echo esc_html( __( 'Required field?', 'wpcf7' ) ); ?>
     </td>
 </tr><?php endif ?>
-<tr><td><?php echo esc_html( __( 'Name', 'wpcf7' ) ); ?><br /><input type="text" name="name" class="tg-name oneline" /></td><td></td></tr>
+<tr><td>
+    <?php echo esc_html( __( 'Name', 'wpcf7' ) ); ?><br /><input type="text" name="name" class="tg-name oneline" />
+    <?php if ('honeypot' === $type) : ?>
+        <?php echo esc_html( __( 'Use a suitable name, e.g. \'name\', \'email-address\', \'telephone-number\'', 'wpcf7' ) ) ?>
+    <?php endif ?>
+    </td><td></td></tr>
 </table>
 
 <table>
