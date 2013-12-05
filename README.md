@@ -1,4 +1,4 @@
-= Contact Form 7 =
+# Contact Form 7
 
 Fork of '[contact form 7](http://wordpress.org/plugins/contact-form-7/)' wordpress plugin.
 
