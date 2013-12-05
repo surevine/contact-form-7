@@ -113,7 +113,6 @@ add_filter( 'wpcf7_validate_honeypot*', 'wpcf7_text_validation_filter', 10, 2 );
 
 function wpcf7_text_validation_filter( $result, $tag ) {
 	$tag = new WPCF7_Shortcode( $tag );
-
 	$name = $tag->name;
 
 	$value = isset( $_POST[$name] )

@@ -205,6 +205,7 @@
 	$.fn.wpcf7NotValidTip = function(message) {
 		return this.each(function() {
 			var into = $(this);
+            if (0 === message.length) return
 			into.append('<span class="wpcf7-not-valid-tip">' + message + '</span>');
 			$('span.wpcf7-not-valid-tip').mouseover(function() {
 				$(this).fadeOut('fast');
