@@ -156,12 +156,16 @@ function wpcf7_text_validation_filter( $result, $tag ) {
 		}
 	}
     
-        if ( 'honeypot' == $tag->basetype ) {
-            if ( '' !== $value ) {
-                if ( $contact_form = wpcf7_get_current_contact_form() )
-		        $contact_form->honeypot = array( 'spam' => true );
-            }
+    if ( 'honeypot' == $tag->basetype ) {
+        if ( '' !== $value ) {
+            $result = array(
+                'valid' => false,
+                'reason' => array(
+                    $name => 'honeypot'
+                ),
+            );
         }
+    }
 
   	return $result;
 }
@@ -188,7 +192,6 @@ function wpcf7_text_messages( $messages ) {
 			'default' => __( 'Telephone number seems invalid.', 'wpcf7' )
 		) ) );
 }
-
 
 /* Tag generator */
 
