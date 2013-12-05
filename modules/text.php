@@ -232,7 +232,6 @@ function wpcf7_tg_pane_tel( &$contact_form ) {
 }
         
 function wpcf7_tg_pane_honeypot( &$contact_form ) {
-echo 'honeypot function called';
     wpcf7_tg_pane_text_and_relatives( 'honeypot' );
 }
 
