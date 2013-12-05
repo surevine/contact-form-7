@@ -64,6 +64,7 @@ class WPCF7_ContactForm {
 		$this->mail_2 = array();
 		$this->messages = array();
 		$this->additional_settings = '';
+                $this->honeypot = array();
 
 		$post = get_post( $post );
 
@@ -464,6 +465,15 @@ class WPCF7_ContactForm {
 
 		return apply_filters( 'wpcf7_spam', $spam );
 	}
+
+        function bot() {
+            $bot = false;
+
+            if ( 0 !== count($this->honeypot) )
+                $bot = true;
+ 
+            return apply_filters( 'wpcf7_bot', $bot );
+        }
 
 	function verify_nonce() {
 		return wpcf7_verify_nonce( $_POST['_wpnonce'], $this->id );

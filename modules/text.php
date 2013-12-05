@@ -157,14 +157,14 @@ function wpcf7_text_validation_filter( $result, $tag ) {
 		}
 	}
     
-    if ( 'honeypot' == $tag->basetype ) {
-        if ( '' !== $value ) {
-            if ( $contact_form = wpcf7_get_current_contact_form() )
+        if ( 'honeypot' == $tag->basetype ) {
+            if ( '' !== $value ) {
+                if ( $contact_form = wpcf7_get_current_contact_form() )
 		        $contact_form->honeypot = array( 'spam' => true );
+            }
         }
-    }
 
-	return $result;
+  	return $result;
 }
 
 
