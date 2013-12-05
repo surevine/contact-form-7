@@ -69,5 +69,5 @@ div.wpcf7 .placeheld {
 }
 
 input.wpcf7-honeypot {
-    /*display: none;*/
+    display: none;
 }
