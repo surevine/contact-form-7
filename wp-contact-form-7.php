@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Contact Form 7
+Plugin Name: Contact Form 7 (Surevine modified)
 Plugin URI: http://contactform7.com/
 Description: Just another contact form plugin. Simple but flexible.
 Author: Takayuki Miyoshi
