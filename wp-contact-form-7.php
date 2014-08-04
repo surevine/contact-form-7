@@ -53,7 +53,7 @@ if ( ! defined( 'WPCF7_LOAD_CSS' ) )
 	define( 'WPCF7_LOAD_CSS', true );
 
 if ( ! defined( 'WPCF7_AUTOP' ) )
-	define( 'WPCF7_AUTOP', true );
+	define( 'WPCF7_AUTOP', false );
 
 if ( ! defined( 'WPCF7_USE_PIPE' ) )
 	define( 'WPCF7_USE_PIPE', true );
